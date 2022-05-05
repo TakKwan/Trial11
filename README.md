@@ -4,7 +4,7 @@ Date: 5/4/2022
 By [[Tak Lo](https://linkedin.com/in/takkwanlo)]
 
 ## Overview
-Trial11 is a hiking app under development. Its goal is to let users record their favorite hiking trials.
+Trial11 is a National Park app under development. Its goal is to let users bookmark their favorite Parks. Users can make a watch list of parks they would like to go.
 
 
 ## Technologies
@@ -16,8 +16,8 @@ Trial11 is a hiking app under development. Its goal is to let users record their
 
 
 ## Getting Started
-[Trial11]()
-[Trello](https://trello.com/b/rpCtxubn/trial11)
+[[Trial11]()]   
+[[Trello](https://trello.com/b/rpCtxubn/trial11)]
 
 ## Future Update
 
