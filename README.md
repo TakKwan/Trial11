@@ -1,7 +1,7 @@
 # Trial11
 
 Date: 5/4/2022   
-By [[Tak Lo](linkedin.com/in/takkwanlo)]
+By [[Tak Lo](https://linkedin.com/in/takkwanlo)]
 
 ## Overview
 Trial11 is a hiking app under development. Its goal is to let users record their favorite hiking trials.
