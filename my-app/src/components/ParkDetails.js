@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { getPark } from "../services"
 import { useParams } from "react-router-dom"
-import { addToWatchList, addToFavorites } from "../services"
+import { addToWatchList, addToFavorites, unwatch } from "../services"
 
 const ParkDetails = ({ userId }) => {
   const [park, setPark] = useState()
@@ -51,7 +51,7 @@ const ParkDetails = ({ userId }) => {
         {userId && <button onClick={() => addToFavorites(userId, park.parkCode)}>Favorite</button>}
         {userId && <button onClick={() => console.log('remove favorite')}>Remove Favorite</button>}
         {userId && <button onClick={() => addToWatchList(userId, park.parkCode)}>Watch</button>}
-        {userId && <button onClick={() => console.log('remove watch')}>Remove watch</button>}
+        {userId && <button onClick={() => unwatch(userId, parkCode)}>unwatch</button>}
         <h3>Description</h3>
         <p className="detailsDescription">{park?.description}</p>
         <h3>Weather</h3>

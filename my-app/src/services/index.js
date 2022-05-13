@@ -102,27 +102,14 @@ export const getMultiParks = async (parkCodes) => {
 }
 
 export const addToWatchList = async (userId, parkCode) => {
-  try {
-    const respond = await Client.post('watchlist', {
-      userId,
-      parkCode
-    })
-
-    return respond.data
-  } catch (error) {
-    throw error
-  }
+  const respond = await Client.post('watchlist', {
+    userId,
+    parkCode
+  })
 }
 
 export const unwatch = async (userId, parkCode) => {
-  try {
-    const respond = await Client.delete('watchlist', {
-      userId,
-      parkCode
-    })
-  } catch (error) {
-    throw error
-  }
+  const respond = await Client.delete(`watchlist/${userId}/${parkCode}`)
 }
 
 export const addToFavorites = async (userId, parkCode) => {
