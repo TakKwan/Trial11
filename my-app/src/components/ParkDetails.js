@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { getPark } from "../services"
 import { useParams } from "react-router-dom"
 import { addToWatchList } from "../services"
@@ -6,11 +6,14 @@ import { addToWatchList } from "../services"
 const ParkDetails = () => {
   const [park, setPark] = useState()
   const { parkCode } = useParams()
+  const ref = useRef()
 
   const fetchPark = async () => {
     const respond = await getPark(parkCode)
     setPark(respond)
   }
+
+
 
   useEffect(() => {
     fetchPark()
