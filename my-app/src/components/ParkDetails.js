@@ -38,11 +38,6 @@ const ParkDetails = ({ userId }) => {
     return newIntervalId
   }
 
-  const addFavorite = () => {
-    addToFavorites(userId, park.parkCode)
-  }
-
-
 
   return (
     <div className="parkDetails">
@@ -53,8 +48,10 @@ const ParkDetails = ({ userId }) => {
       </div>
       <div className="contentContainer">
         <h2 className="details title">{park?.fullName}</h2>
-        {userId && <button onClick={addFavorite}>Add to Favorites</button>}
+        {userId && <button onClick={() => addToFavorites(userId, park.parkCode)}>Favorite</button>}
+        {userId && <button onClick={() => console.log('remove favorite')}>Remove Favorite</button>}
         {userId && <button onClick={() => addToWatchList(userId, park.parkCode)}>Watch</button>}
+        {userId && <button onClick={() => console.log('remove watch')}>Remove watch</button>}
         <h3>Description</h3>
         <p className="detailsDescription">{park?.description}</p>
         <h3>Weather</h3>

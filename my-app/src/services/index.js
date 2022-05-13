@@ -114,6 +114,17 @@ export const addToWatchList = async (userId, parkCode) => {
   }
 }
 
+export const unwatch = async (userId, parkCode) => {
+  try {
+    const respond = await Client.delete('watchlist', {
+      userId,
+      parkCode
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
 export const addToFavorites = async (userId, parkCode) => {
   try {
     const respond = await Client.post('favorite', {
