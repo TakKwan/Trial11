@@ -12,7 +12,7 @@ body {
 
 .navbar {
   display: flex;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgb(0, 0, 0);
   min-height: 60px;
 }
 
@@ -122,7 +122,7 @@ body {
 .parkImage {
   height: 100%;
   font-size: 25px;
-  background: blue;
+  background: lightcyan;
   display: inline-block;
   line-height: 100px; 
 }
