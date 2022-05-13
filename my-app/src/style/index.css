@@ -113,7 +113,7 @@ body {
 .imageContainer {
   vertical-align: middle;
   display: inline-block;
-  flex-basis: 50%;
+  flex-basis: 60%;
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
@@ -128,7 +128,7 @@ body {
 }
 
 .contentContainer {
-  flex-basis: 50%;
+  flex-basis: 40%;
   overflow: scroll;
   display: flex;
   flex-direction: column;

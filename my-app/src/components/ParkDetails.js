@@ -14,6 +14,10 @@ const ParkDetails = () => {
   }
 
   const scroll = () => {
+    console.log(imageContainer)
+    if (imageContainer.current.scrollLeft + imageContainer.current.offsetWidth >= imageContainer.current.scrollWidth) {
+      imageContainer.current.scrollLeft = 0
+    }
     imageContainer.current.scrollLeft += 1.5;
   };
 
