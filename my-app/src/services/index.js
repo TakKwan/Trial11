@@ -124,3 +124,7 @@ export const addToFavorites = async (userId, parkCode) => {
     throw error
   }
 }
+
+export const removeFavorite = async (userId, parkCode) => {
+  const respond = await Client.delete(`favorite/${userId}/${parkCode}`)
+}

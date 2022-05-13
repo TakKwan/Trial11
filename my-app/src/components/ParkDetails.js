@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { getPark } from "../services"
 import { useParams } from "react-router-dom"
-import { addToWatchList, addToFavorites, unwatch } from "../services"
+import { addToWatchList, addToFavorites, unwatch, removeFavorite } from "../services"
 
 const ParkDetails = ({ userId }) => {
   const [park, setPark] = useState()
@@ -49,7 +49,7 @@ const ParkDetails = ({ userId }) => {
       <div className="contentContainer">
         <h2 className="details title">{park?.fullName}</h2>
         {userId && <button onClick={() => addToFavorites(userId, park.parkCode)}>Favorite</button>}
-        {userId && <button onClick={() => console.log('remove favorite')}>Remove Favorite</button>}
+        {userId && <button onClick={() => removeFavorite(userId, park.parkCode)}>Remove Favorite</button>}
         {userId && <button onClick={() => addToWatchList(userId, park.parkCode)}>Watch</button>}
         {userId && <button onClick={() => unwatch(userId, parkCode)}>unwatch</button>}
         <h3>Description</h3>
