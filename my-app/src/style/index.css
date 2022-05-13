@@ -1,5 +1,141 @@
+body {
+  margin: 0px;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .navbar {
   display: flex;
+  background-color: rgba(0, 0, 0, 0.74);
+  min-height: 60px;
+}
+
+.nav_element {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.897);
+  text-align: center;
+  padding: 20px 10px 10px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.nav_element:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+#homeButton {
+  margin-right: auto;
+  margin-left: 10px;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parksContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.card {
+  border-radius: 5px;
+  height: 400px;
+  width: 460px;
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.2s ease-out;
+  transform: scale(90%);
+  display: flex;
+  flex-direction: column;
   justify-content: end;
-  background-color: rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+}
+
+.cardContent {
+  background-color: #ffffffc9;
+  padding: 20px 10px  0 10px;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  transform: translateY(100px);
+}
+
+.cardContent:hover {
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: scale(100%);
+}
+
+.img {
+  padding: 0px;
+  width: 50%;
+  cursor: pointer;
+}
+
+.parkTitle {
+  font-family: sans-serif;
+  font-size: unset;
+  line-height: 20px;
+  margin: 0;
+}
+
+.description {
+  margin: 20px 0 0 0;
+  height: 100px;
+  overflow-y: scroll;
+  font-size: small;
+}
+
+.watchlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.parkDetails {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  overflow: auto;
+}
+
+.imagesContainer {
+  vertical-align: middle;
+  display: inline-block;
+  flex-basis: 50%;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.parkImage {
+  height: 100%;
+  font-size: 25px;
+  background: blue;
+  display: inline-block;
+  line-height: 100px; 
+}
+
+.contentContainer {
+  flex-basis: 50%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.detailsDescription {
 }

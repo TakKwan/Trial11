@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom"
 
 
-const Logout = () => {
-  return (
-    <div>Logout</div>
-  )
+const Logout = ({ setUser }) => {
+  const navigate = useNavigate()
+  setUser(null)
+  localStorage.clear()
+  navigate('/')
 }
 
 export default Logout
