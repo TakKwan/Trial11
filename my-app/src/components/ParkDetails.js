@@ -8,6 +8,7 @@ const ParkDetails = ({ userId }) => {
   const { parkCode } = useParams()
   const imageContainer = useRef()
   const [intervalId, setIntervalId] = useState()
+  const [favorited, setFavorited] = useState()
 
   useEffect(() => {
     fetchPark()

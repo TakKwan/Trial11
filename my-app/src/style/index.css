@@ -136,3 +136,7 @@ body {
   justify-content: center;
   padding: 20px;
 }
+
+.list {
+  margin: 10px;
+}
