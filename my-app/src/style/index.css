@@ -110,7 +110,7 @@ body {
   overflow: auto;
 }
 
-.imagesContainer {
+.imageContainer {
   vertical-align: middle;
   display: inline-block;
   flex-basis: 50%;
