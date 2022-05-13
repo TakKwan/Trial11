@@ -1,13 +1,19 @@
 import { useState, useEffect, useRef } from "react"
 import { getPark } from "../services"
 import { useParams } from "react-router-dom"
-import { addToWatchList } from "../services"
+import { addToWatchList, addToFavorites } from "../services"
 
-const ParkDetails = () => {
+const ParkDetails = ({ userId }) => {
   const [park, setPark] = useState()
   const { parkCode } = useParams()
   const imageContainer = useRef()
   const [intervalId, setIntervalId] = useState()
+
+  useEffect(() => {
+    fetchPark()
+    const intervalId = autoScroll()
+    return () => clearInterval(intervalId)
+  }, [])
 
   const fetchPark = async () => {
     const respond = await getPark(parkCode)
@@ -15,7 +21,8 @@ const ParkDetails = () => {
   }
 
   const scroll = () => {
-    if (imageContainer.current.scrollLeft + imageContainer.current.offsetWidth >= imageContainer.current.scrollWidth) {
+
+    if (imageContainer.current?.scrollLeft + imageContainer.current?.offsetWidth >= imageContainer.current?.scrollWidth) {
       imageContainer.current.scrollLeft = 0
     }
     imageContainer.current.scrollLeft += 1;
@@ -31,11 +38,11 @@ const ParkDetails = () => {
     return newIntervalId
   }
 
-  useEffect(() => {
-    fetchPark()
-    const intervalId = autoScroll()
-    return () => clearInterval(intervalId)
-  }, [])
+  const addFavorite = () => {
+    addToFavorites(userId, park.parkCode)
+  }
+
+
 
   return (
     <div className="parkDetails">
@@ -46,7 +53,12 @@ const ParkDetails = () => {
       </div>
       <div className="contentContainer">
         <h2 className="details title">{park?.fullName}</h2>
+        {userId && <button onClick={addFavorite}>Add to Favorites</button>}
+        {userId && <button onClick={() => addToWatchList(userId, park.parkCode)}>Watch</button>}
+        <h3>Description</h3>
         <p className="detailsDescription">{park?.description}</p>
+        <h3>Weather</h3>
+        <p className="detailsDescription">{park?.weatherInfo}</p>
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import { useRef } from 'react'
 const Navbar = (props) => {
   return (
     <div className="navbar">
-      <NavLink to="/" className="nav_element" id='homeButton'>Home</NavLink>
+      <NavLink to="/" className="nav_element" id='homeButton'>Trial11</NavLink>
       {props.user ?
         [<NavLink to="/watchlist" key="watchlist" className="nav_element">Watchlist</NavLink>,
         <NavLink to="/favorites" key="favorites" className="nav_element">Favorites</NavLink>,

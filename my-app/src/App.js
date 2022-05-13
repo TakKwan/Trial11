@@ -38,7 +38,7 @@ function App() {
         <Route path="/" element={<components.Home />} />
         <Route path="/register" element={<components.Register setUser={setUser} />} />
         <Route path="/login" element={<components.Login setUser={setUser} />} />
-        <Route path="/parkdetails/:parkCode" element={<components.ParkDetails userId={user} />} />
+        <Route path="/parkdetails/:parkCode" element={<components.ParkDetails userId={user?.id} />} />
         <Route path="/" element={<PrivateOutlet />} >
           <Route path="/watchlist" element={user && <components.Watchlist userId={user.id} />} />
           <Route path="/favorites" element={user && <components.Favorites userId={user.id} />} />
