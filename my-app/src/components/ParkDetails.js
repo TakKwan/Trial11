@@ -14,7 +14,6 @@ const ParkDetails = () => {
   }
 
   const scroll = () => {
-    console.log(imageContainer)
     if (imageContainer.current.scrollLeft + imageContainer.current.offsetWidth >= imageContainer.current.scrollWidth) {
       imageContainer.current.scrollLeft = 0
     }
@@ -36,7 +35,6 @@ const ParkDetails = () => {
       <div className="contentContainer">
         <h2 className="details title">{park?.fullName}</h2>
         <p className="detailsDescription">{park?.description}</p>
-        <button onClick={() => scroll(1)}>click me</button>
       </div>
     </div>
   )
