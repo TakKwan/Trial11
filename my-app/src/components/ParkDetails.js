@@ -5,7 +5,7 @@ import { addToWatchList, addToFavorites, unwatch, removeFavorite } from "../serv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faEye } from "@fortawesome/free-solid-svg-icons"
 import { faStar as offStar, faEye as offEye } from "@fortawesome/free-regular-svg-icons"
-import { throttleFunction, debounce } from "../utils"
+import { throttleFunction } from "../utils"
 
 const intervals = []
 
