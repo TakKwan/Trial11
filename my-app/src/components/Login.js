@@ -27,26 +27,24 @@ const Login = ({ setUser }) => {
 
   return (
     <div className="loginContainer">
-      <form className="loginBox" onSubmit={onSubmit}>
-        <h1 className='loginElement'>Login</h1>
-        <div className="form loginElement">
-          <input
-            className='loginInput'
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={userBody.email}
-            onChange={onChange}
-          />
-          <input
-            className='loginInput'
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={userBody.password}
-            onChange={onChange}
-          />
-        </div>
+      <form className="loginForm" onSubmit={onSubmit}>
+        <h1 className='loginTitle'>Login</h1>
+        <input
+          className='loginInput'
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={userBody.email}
+          onChange={onChange}
+        />
+        <input
+          className='loginInput'
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={userBody.password}
+          onChange={onChange}
+        />
         <button className='loginButton' type="submit">Login</button>
       </form>
     </div>
