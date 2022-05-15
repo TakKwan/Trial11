@@ -6,7 +6,8 @@ const Favorites = ({ user }) => {
   const [parks, setParks] = useState(null)
 
   const fetchFavorites = async () => {
-    const res = await getMultiParks(user.favorites)
+    const favorites = user.Favorites.map(park => park.parkCode)
+    const res = await getMultiParks(favorites)
     setParks(res)
   }
 
