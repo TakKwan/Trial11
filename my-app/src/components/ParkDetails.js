@@ -88,6 +88,7 @@ const ParkDetails = ({ user, setUser }) => {
   }
 
   const toggleWatch = () => {
+    !user && navigate('/login')
     if (watched) {
       const index = user.watchlist.findIndex(watch => watch === parkCode)
       user.watchlist.splice(index, 1)

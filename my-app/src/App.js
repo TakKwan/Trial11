@@ -11,7 +11,6 @@ function App() {
 
   const fetchToken = async () => {
     const respond = await checkSession()
-    //console.log("[App][fetchToken]", respond)
     setUser(respond)
   }
 
@@ -41,10 +40,8 @@ function App() {
         <Route path="/login" element={<components.Login setUser={setUser} />} />
         <Route path="/parkdetails/:parkCode" element={<components.ParkDetails user={user} setUser={setUser} />} />
         <Route path="/results/:search" element={<components.Results />} />
-        <Route path="/" element={<PrivateOutlet />} >
-          <Route path="/watchlist" element={user && <components.Watchlist user={user} />} />
-          <Route path="/favorites" element={user && <components.Favorites user={user} />} />
-        </Route>
+        <Route path="/watchlist" element={user ? <components.Watchlist user={user} /> : <components.Login setUser={setUser} />} />
+        <Route path="/favorites" element={user ? <components.Favorites user={user} /> : <components.Login setUser={setUser} />} />
       </Routes>
     </div>
   )
