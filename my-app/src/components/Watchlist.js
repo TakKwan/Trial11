@@ -6,8 +6,7 @@ const Watchlist = ({ user }) => {
   const [parks, setParks] = useState(null)
 
   const fetchWatchList = async () => {
-    const watchlist = user.Watches.map(park => park.parkCode)
-    const res = await getMultiParks(watchlist)
+    const res = await getMultiParks(user.watchlist)
     setParks(res)
   }
 

@@ -71,7 +71,7 @@ const ParkDetails = ({ user, setUser }) => {
     }
 
     if (favorited) {
-      const index = user.favorites.findIndex(favorite => favorite === parkCode)
+      const index = user.Favorites.findIndex(favorite => favorite.parkCode === parkCode)
       user.favorites.splice(index, 1)
       setUser(user)
       setFavorited(false)
@@ -90,7 +90,7 @@ const ParkDetails = ({ user, setUser }) => {
   const toggleWatch = () => {
     !user && navigate('/login')
     if (watched) {
-      const index = user.watchlist.findIndex(watch => watch === parkCode)
+      const index = user.Watches.findIndex(watch => watch.parkCode === parkCode)
       user.watchlist.splice(index, 1)
       setUser(user)
       setWatched(false)
