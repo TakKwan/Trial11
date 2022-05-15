@@ -26,10 +26,6 @@ body {
   font-weight: 300;
 }
 
-.searchIcon {
-  font-size: larger;
-}
-
 .nav_element:hover {
   background-color: rgb(0, 0, 0);
 }
@@ -47,6 +43,7 @@ body {
 
 .parksContainer {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 10px;
 }
@@ -184,6 +181,24 @@ body {
 
 .searchWrapper.onSearch {
   border-bottom: 1px solid white;
+}
+
+.searchWrapper .searchIcon {
+  font-size: larger;
+}
+
+.searchWrapper .iconWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.searchWrapper .iconWrapper:not(.onSearch) {
+  height: 100%;
+}
+
+.searchWrapper:not(.onSearch) {
+  height: 100%;
 }
 
 .searchWrapper .searchInput,

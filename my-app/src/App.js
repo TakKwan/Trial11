@@ -1,6 +1,6 @@
 import { Routes, Route, Outlet, Navigate, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { checkSession } from "./services/index"
+import { getUser, logoutUser } from "./services/index"
 import components from "./components"
 import Navbar from "./components/Navbar"
 
@@ -9,28 +9,28 @@ function App() {
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
 
-  const fetchToken = async () => {
-    const respond = await checkSession()
-    setUser(respond)
-  }
-
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      fetchToken()
-    }
-  }, [])
+    fetchUser()
+  }, [user])
 
   const PrivateOutlet = () => {
-    if (user || localStorage.getItem('token'))
+    if (user)
       return <Outlet />
     else
       <Navigate to="/login" />
   }
 
+  const fetchUser = async () => {
+    if (user) return;
+    const userPayload = await getUser()
+    if (userPayload) {
+      setUser(userPayload)
+    }
+  }
+
   const logout = () => {
     setUser(null)
-    localStorage.clear()
+    logoutUser()
     navigate('/')
   }
 
@@ -41,7 +41,7 @@ function App() {
         <Route path="/" element={<components.Home />} />
         <Route path="/register" element={<components.Register setUser={setUser} />} />
         <Route path="/login" element={<components.Login setUser={setUser} />} />
-        <Route path="/parkdetails/:parkCode" element={<components.ParkDetails user={user} setUser={setUser} />} />
+        <Route path="/parkdetails/:parkCode" element={<components.ParkDetails user={user} updateUser={setUser} />} />
         <Route path="/results/:search" element={<components.Results />} />
         <Route path="/" element={<PrivateOutlet />} >
           <Route path="/watchlist" element={user && <components.Watchlist user={user} />} />

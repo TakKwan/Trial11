@@ -7,7 +7,7 @@ const NPS = axios.create({
   baseURL: 'https://developer.nps.gov/api/v1',
   headers: { 'X-Api-Key': NPS_KEY }
 })
-
+const USER_TOKEN_STORAGE_KEY = "token"
 
 Client.interceptors.request.use(
   (config) => {
@@ -25,8 +25,8 @@ Client.interceptors.request.use(
 
 export const register = async (userBody) => {
   try {
-    const respond = await axios.post('http://localhost:3001/api/user/register', userBody)
-    localStorage.setItem('token', respond.data.token)
+    const respond = await Client.post('/user/register', userBody)
+    localStorage.setItem(USER_TOKEN_STORAGE_KEY, respond.data.token)
     return respond.data.user
   } catch (error) {
     throw error
@@ -35,8 +35,8 @@ export const register = async (userBody) => {
 
 export const login = async (userBody) => {
   try {
-    const respond = await axios.post('http://localhost:3001/api/user/login', userBody)
-    localStorage.setItem('token', respond.data.token)
+    const respond = await Client.post('/user/login', userBody)
+    localStorage.setItem(USER_TOKEN_STORAGE_KEY, respond.data.token)
     return respond.data.user
   } catch (error) {
     throw error
@@ -131,7 +131,7 @@ export const addToFavorites = async (userId, parkCode) => {
 }
 
 export const removeFavorite = async (userId, parkCode) => {
-  const respond = await Client.delete(`favorite/${userId}/${parkCode}`)
+  Client.delete(`favorite/${userId}/${parkCode}`)
 }
 
 export const searchParks = async (query) => {
@@ -141,9 +141,29 @@ export const searchParks = async (query) => {
         q: query
       }
     })
+
     return respond.data.data
+  } catch (error) {
+    throw error
   }
-  catch (error) {
+}
+
+
+export const getUser = () => {
+  try {
+    const token = localStorage.getItem(USER_TOKEN_STORAGE_KEY)
+    if (token) {
+      return checkSession().catch(e => localStorage.removeItem(USER_TOKEN_STORAGE_KEY))
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+export const logoutUser = () => {
+  try {
+    localStorage.removeItem(USER_TOKEN_STORAGE_KEY)
+  } catch (error) {
     throw error
   }
 }

@@ -22,13 +22,19 @@ const SearchBar = () => {
     }
   }
 
+  const addOnSearchClassName = (className) => {
+    return [className, search && "onSearch"].filter(s => s).join(" ")
+  }
+
   return (
     <div className="searchContainer">
-      <div className={["searchWrapper", search && "onSearch"].filter(s => s).join(" ")}>
+      <div className={addOnSearchClassName("searchWrapper")}>
         <form onSubmit={searchHandler}>
           <input key="searchInput" type="text" className={["searchInput", search ? "shown" : "hidden"].filter(s => s).join(" ")} value={searchValue} placeholder="Search Parks" onChange={onSearchChange} />
         </form>
-        <FontAwesomeIcon icon={searchIcon} className="fa-2xl searchIcon fa-2xl" onClick={searchHandler} />
+        <div className={addOnSearchClassName("iconWrapper")} onClick={searchHandler}>
+          <FontAwesomeIcon icon={searchIcon} className="fa-2xl searchIcon fa-2xl" />
+        </div>
       </div>
     </div>
   )

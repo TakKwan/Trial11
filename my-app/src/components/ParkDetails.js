@@ -9,7 +9,7 @@ import { throttleFunction } from "../utils"
 
 const intervals = []
 
-const ParkDetails = ({ user, setUser }) => {
+const ParkDetails = ({ user, updateUser }) => {
   const imageWrapper = useRef(null)
   const { parkCode } = useParams(null)
   const [park, setPark] = useState(null)
@@ -73,13 +73,13 @@ const ParkDetails = ({ user, setUser }) => {
     if (favorited) {
       const index = user.favorites.findIndex(favorite => favorite === parkCode)
       user.favorites.splice(index, 1)
-      setUser(user)
+      updateUser(user)
       setFavorited(false)
       removeFavorite(user.id, park.parkCode)
       setFavIcon(offStar)
     } else {
       user.favorites.push(parkCode)
-      setUser(user)
+      updateUser(user)
       setFavorited(true)
       addToFavorites(user.id, park.parkCode)
       setFavIcon(faStar)
@@ -88,17 +88,21 @@ const ParkDetails = ({ user, setUser }) => {
   }
 
   const toggleWatch = () => {
-    !user && navigate('/login')
+    if (!user) {
+      navigate("/login")
+      return;
+    }
+
     if (watched) {
       const index = user.watchlist.findIndex(watch => watch === parkCode)
       user.watchlist.splice(index, 1)
-      setUser(user)
+      updateUser(user)
       setWatched(false)
       unwatch(user.id, park.parkCode)
       setWatchIcon(offEye)
     } else {
       user.watchlist.push(parkCode)
-      setUser(user)
+      updateUser(user)
       setWatched(true)
       addToWatchList(user.id, park.parkCode)
       setWatchIcon(faEye)
