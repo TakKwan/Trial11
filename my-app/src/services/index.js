@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const NPS_KEY = process.env.REACT_APP_NPS_KEY
-const Client = axios.create({ baseURL: 'http://localhost:3001/api' })
+const Client = axios.create({ baseURL: 'https://trialeleven-server.herokuapp.com/api' })
 const NPS = axios.create({
   baseURL: 'https://developer.nps.gov/api/v1',
   headers: { 'X-Api-Key': NPS_KEY }
