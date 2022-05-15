@@ -1,5 +1,4 @@
 import axios from "axios"
-import qs from 'qs'
 
 const NPS_KEY = process.env.REACT_APP_NPS_KEY
 const Client = axios.create({ baseURL: 'http://localhost:3001/api' })
