@@ -34,13 +34,13 @@ const ParkDetails = ({ user, setUser }) => {
   }
 
   const checkFavorite = () => {
-    const isFavorited = user?.Favorites?.some(favorite => favorite.parkCode === parkCode)
+    const isFavorited = user?.favorites?.some(favorite => favorite === parkCode)
     setFavorited(isFavorited)
     setFavIcon(isFavorited ? faStar : offStar)
   }
 
   const checkWatch = () => {
-    const isWatched = user?.Watches?.some(watched => watched.parkCode === parkCode)
+    const isWatched = user?.watchlist?.some(watched => watched === parkCode)
     setWatched(isWatched)
     setWatchIcon(isWatched ? faEye : offEye)
   }
