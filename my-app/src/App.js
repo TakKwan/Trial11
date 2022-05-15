@@ -22,7 +22,10 @@ function App() {
   }, [])
 
   const PrivateOutlet = () => {
-    return user ? <Outlet /> : <Navigate to="/login" />
+    if (user || localStorage.getItem('token'))
+      return <Outlet />
+    else
+      <Navigate to="/login" />
   }
 
   const logout = () => {
@@ -40,8 +43,10 @@ function App() {
         <Route path="/login" element={<components.Login setUser={setUser} />} />
         <Route path="/parkdetails/:parkCode" element={<components.ParkDetails user={user} setUser={setUser} />} />
         <Route path="/results/:search" element={<components.Results />} />
-        <Route path="/watchlist" element={user ? <components.Watchlist user={user} /> : <components.Login setUser={setUser} />} />
-        <Route path="/favorites" element={user ? <components.Favorites user={user} /> : <components.Login setUser={setUser} />} />
+        <Route path="/" element={<PrivateOutlet />} >
+          <Route path="/watchlist" element={user && <components.Watchlist user={user} />} />
+          <Route path="/favorites" element={user && <components.Favorites user={user} />} />
+        </Route>
       </Routes>
     </div>
   )
