@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { useRef } from 'react'
+import SearchBar from './SearchBar'
 
 const Navbar = (props) => {
   return (
     <div className="navbar">
       <NavLink to="/" className="nav_element" id='homeButton'>Trial11</NavLink>
+      <SearchBar />
       {props.user ?
         [<NavLink to="/watchlist" key="watchlist" className="nav_element">Watchlist</NavLink>,
         <NavLink to="/favorites" key="favorites" className="nav_element">Favorites</NavLink>,

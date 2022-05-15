@@ -26,6 +26,10 @@ body {
   font-weight: 300;
 }
 
+.searchIcon {
+  font-size: larger;
+}
+
 .nav_element:hover {
   background-color: rgb(0, 0, 0);
 }
@@ -164,4 +168,143 @@ body {
 
 .list {
   margin: 10px;
+}
+
+.searchContainer,
+.searchContainer .searchWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchContainer {
+  padding-right: 10px;
+}
+
+.searchWrapper.onSearch {
+  border-bottom: 1px solid white;
+}
+
+.searchWrapper .searchInput,
+.searchWrapper .searchButton,
+.searchWrapper .searchIcon {
+  height: 12px;
+  line-height: 12px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: black;
+  color: white;
+}
+
+.searchContainer .searchInput,
+.searchContainer .searchButton {
+  padding: 10px 0;
+}
+
+.searchContainer .searchInput {
+  transition: width .25s ease-out, opacity .35s ease-in;
+}
+
+.searchContainer .searchInput.hidden {
+  width: 0;
+  opacity: 0;
+}
+
+.searchContainer .searchInput.shown {
+  width: 300px;
+  opacity: 1;
+}
+
+.searchContainer .searchInput:focus {
+  outline: none;
+}
+
+.loginContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loginBox {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 0;
+  border: solid rgba(0, 0, 0, 0.233) 1px;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.loginElement {
+  margin: 0;
+  text-align: center;
+}
+
+.loginInput , .registerInput {
+  font-size: 15px;
+  padding: 10px;
+  text-align: left;
+  border-radius: 5px;
+  border: solid #00000057 1px;
+  margin-top: 10px;
+}
+
+.loginButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: none;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: rgba(32, 179, 32, 0.699);
+}
+
+.loginButton:hover , .resgisterButton:hover {
+  background-color: rgba(0, 128, 0, 0.753);
+}
+
+.registerContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerForm {
+  display: flex;
+  height: 340px;
+  width: 300px;
+  flex-direction: column;
+  border: solid rgba(0, 0, 0, 0.233) 1px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.registerTitle {
+  text-align: center;
+  font-size: 30px;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.resgisterButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: none;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: rgba(32, 179, 32, 0.699);
+  color: black;
 }

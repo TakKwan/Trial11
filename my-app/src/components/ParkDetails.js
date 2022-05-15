@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { getPark } from "../services"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { addToWatchList, addToFavorites, unwatch, removeFavorite } from "../services"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faEye } from "@fortawesome/free-solid-svg-icons"
@@ -9,7 +9,7 @@ import { throttleFunction } from "../utils"
 
 const intervals = []
 
-const ParkDetails = ({ userId }) => {
+const ParkDetails = ({ user, setUser }) => {
   const imageWrapper = useRef(null)
   const { parkCode } = useParams(null)
   const [park, setPark] = useState(null)
@@ -18,17 +18,31 @@ const ParkDetails = ({ userId }) => {
   const [favIcon, setFavIcon] = useState(offStar)
   const [watched, setWatched] = useState(false)
   const [watchIcon, setWatchIcon] = useState(offEye)
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchPark()
-
+    checkFavorite()
+    checkWatch()
     const intervalId = autoScroll()
     return () => clearInterval(intervalId)
-  }, [])
+  }, [user])
 
   const fetchPark = async () => {
     const respond = await getPark(parkCode)
     setPark(respond)
+  }
+
+  const checkFavorite = () => {
+    const isFavorited = user?.favorites?.some(favorite => favorite === parkCode)
+    setFavorited(isFavorited)
+    setFavIcon(isFavorited ? faStar : offStar)
+  }
+
+  const checkWatch = () => {
+    const isWatched = user?.watchlist?.some(watched => watched === parkCode)
+    setWatched(isWatched)
+    setWatchIcon(isWatched ? faEye : offEye)
   }
 
   const scroll = () => {
@@ -51,25 +65,41 @@ const ParkDetails = ({ userId }) => {
   }
 
   const toggleFavorite = () => {
+    if (!user) {
+      navigate("/login")
+      return;
+    }
+
     if (favorited) {
+      const index = user.favorites.findIndex(favorite => favorite === parkCode)
+      user.favorites.splice(index, 1)
+      setUser(user)
       setFavorited(false)
-      removeFavorite(userId, park.parkCode)
+      removeFavorite(user.id, park.parkCode)
       setFavIcon(offStar)
     } else {
+      user.favorites.push(parkCode)
+      setUser(user)
       setFavorited(true)
-      addToFavorites(userId, park.parkCode)
+      addToFavorites(user.id, park.parkCode)
       setFavIcon(faStar)
+
     }
   }
 
   const toggleWatch = () => {
     if (watched) {
+      const index = user.watchlist.findIndex(watch => watch === parkCode)
+      user.watchlist.splice(index, 1)
+      setUser(user)
       setWatched(false)
-      unwatch(userId, park.parkCode)
+      unwatch(user.id, park.parkCode)
       setWatchIcon(offEye)
     } else {
+      user.watchlist.push(parkCode)
+      setUser(user)
       setWatched(true)
-      addToWatchList(userId, park.parkCode)
+      addToWatchList(user.id, park.parkCode)
       setWatchIcon(faEye)
     }
   }

@@ -1,15 +1,12 @@
-import { getWatchlist, getMultiParks } from "../services"
+import { getMultiParks } from "../services"
 import { useState, useEffect } from "react"
 import ParkCard from './ParkCard'
 
-const Watchlist = ({ userId }) => {
-  const [watchlist, setWatchlist] = useState(null)
+const Watchlist = ({ user }) => {
   const [parks, setParks] = useState(null)
 
   const fetchWatchList = async () => {
-    const respond = await getWatchlist(userId).then(watchlist => watchlist.map(park => park.parkCode))
-    setWatchlist(respond)
-    const res = await getMultiParks(respond)
+    const res = await getMultiParks(user.watchlist)
     setParks(res)
   }
 

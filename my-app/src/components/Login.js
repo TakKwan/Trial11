@@ -26,20 +26,20 @@ const Login = ({ setUser }) => {
   }
 
   return (
-    <div className="login box">
-      <h1>Login</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form">
-          <h3>Email</h3>
+    <div className="loginContainer">
+      <form className="loginBox" onSubmit={onSubmit}>
+        <h1 className='loginElement'>Login</h1>
+        <div className="form loginElement">
           <input
+            className='loginInput'
             type="email"
             placeholder="Email"
             name="email"
             value={userBody.email}
             onChange={onChange}
           />
-          <h3>Password</h3>
           <input
+            className='loginInput'
             type="password"
             placeholder="Password"
             name="password"
@@ -47,7 +47,7 @@ const Login = ({ setUser }) => {
             onChange={onChange}
           />
         </div>
-        <button type="submit">Login</button>
+        <button className='loginButton' type="submit">Login</button>
       </form>
     </div>
   )

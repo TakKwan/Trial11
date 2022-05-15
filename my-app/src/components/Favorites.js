@@ -1,13 +1,12 @@
-import { getFavorites, getMultiParks } from "../services"
+import { getMultiParks } from "../services"
 import { useState, useEffect } from "react"
 import ParkCard from './ParkCard'
 
-const Favorites = ({ userId }) => {
+const Favorites = ({ user }) => {
   const [parks, setParks] = useState(null)
 
   const fetchFavorites = async () => {
-    const respond = await getFavorites(userId).then(favorites => favorites.map(park => park.parkCode))
-    const res = await getMultiParks(respond)
+    const res = await getMultiParks(user.favorites)
     setParks(res)
   }
 
@@ -17,7 +16,7 @@ const Favorites = ({ userId }) => {
 
   return (
     <div className="favorites list">
-      {parks && parks[0] &&
+      {parks && parks[0].parkCode &&
         parks.map(park => (
           <ParkCard park={park} key={park.parkCode} />
         ))

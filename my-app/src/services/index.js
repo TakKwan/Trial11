@@ -26,7 +26,8 @@ Client.interceptors.request.use(
 export const register = async (userBody) => {
   try {
     const respond = await axios.post('http://localhost:3001/api/user/register', userBody)
-    return respond.data
+    localStorage.setItem('token', respond.data.token)
+    return respond.data.user
   } catch (error) {
     throw error
   }
@@ -36,7 +37,7 @@ export const login = async (userBody) => {
   try {
     const respond = await axios.post('http://localhost:3001/api/user/login', userBody)
     localStorage.setItem('token', respond.data.token)
-    return respond.data
+    return respond.data.user
   } catch (error) {
     throw error
   }
@@ -53,6 +54,7 @@ export const getWatchlist = async (userId) => {
 
 export const getFavorites = async (userId) => {
   try {
+    if (!userId) return Promise.resolve([])
     const respond = await Client.get(`/favorite/${userId}`)
     return respond.data
   } catch (error) {
@@ -60,7 +62,7 @@ export const getFavorites = async (userId) => {
   }
 }
 
-export const CheckSession = async () => {
+export const checkSession = async () => {
   try {
     const respond = await Client.get('/user/session')
     return respond.data
@@ -89,6 +91,9 @@ export const getPark = async (parkCode) => {
 
 export const getMultiParks = async (parkCodes) => {
   try {
+    if (!parkCodes || parkCodes?.length === 0) {
+      return Promise.resolve(null);
+    }
     const parkCodes_str = parkCodes.join(',')
     const respond = await NPS.get('/parks', {
       params: {
@@ -127,4 +132,18 @@ export const addToFavorites = async (userId, parkCode) => {
 
 export const removeFavorite = async (userId, parkCode) => {
   const respond = await Client.delete(`favorite/${userId}/${parkCode}`)
+}
+
+export const searchParks = async (query) => {
+  try {
+    const respond = await NPS.get('parks', {
+      params: {
+        q: query
+      }
+    })
+    return respond.data.data
+  }
+  catch (error) {
+    throw error
+  }
 }

@@ -39,34 +39,35 @@ const Register = ({ setUser }) => {
   }
 
   return (
-    <div className="register container">
-      <form onSubmit={onSubmit}>
-        <h3>Name</h3>
+    <div className="registerContainer">
+      <form className="registerForm" onSubmit={onSubmit}>
+        <h3 className="registerTitle">Sign Up</h3>
         <input
+          className="registerInput"
           type="text"
           placeholder="Username"
           name="username"
           value={userBody.username}
           onChange={onChange}
         />
-        <h3>Email</h3>
         <input
+          className="registerInput"
           type="email"
           placeholder="Email"
           name="email"
           value={userBody.email}
           onChange={onChange}
         />
-        <h3>Password</h3>
         <input
+          className="registerInput"
           type="password"
           placeholder="Password"
           name="password"
           value={userBody.password}
           onChange={onChange}
         />
-        <h3>Confirm Password</h3>
         <input
+          className="registerInput"
           type="password"
           placeholder="Confirm Password"
           name="confirmPassword"
@@ -76,6 +77,7 @@ const Register = ({ setUser }) => {
           }}
         />
         <button
+          className="resgisterButton"
           type="submit"
           disabled={
             !userBody.username ||

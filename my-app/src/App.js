@@ -1,28 +1,29 @@
-import Navbar from "./components/Navbar"
 import { Routes, Route, Outlet, Navigate, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { checkSession } from "./services/index"
 import components from "./components"
-import { CheckSession } from "./services/index"
+import Navbar from "./components/Navbar"
 
 
 function App() {
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
 
-  const checkToken = async () => {
-    const respond = await CheckSession()
+  const fetchToken = async () => {
+    const respond = await checkSession()
+    //console.log("[App][fetchToken]", respond)
     setUser(respond)
   }
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
-      checkToken()
+      fetchToken()
     }
   }, [])
 
   const PrivateOutlet = () => {
-    return user ? <Outlet /> : <Navigate to="/" />
+    return user ? <Outlet /> : <Navigate to="/login" />
   }
 
   const logout = () => {
@@ -38,10 +39,11 @@ function App() {
         <Route path="/" element={<components.Home />} />
         <Route path="/register" element={<components.Register setUser={setUser} />} />
         <Route path="/login" element={<components.Login setUser={setUser} />} />
-        <Route path="/parkdetails/:parkCode" element={<components.ParkDetails userId={user?.id} />} />
+        <Route path="/parkdetails/:parkCode" element={<components.ParkDetails user={user} setUser={setUser} />} />
+        <Route path="/results/:search" element={<components.Results />} />
         <Route path="/" element={<PrivateOutlet />} >
-          <Route path="/watchlist" element={user && <components.Watchlist userId={user.id} />} />
-          <Route path="/favorites" element={user && <components.Favorites userId={user.id} />} />
+          <Route path="/watchlist" element={user && <components.Watchlist user={user} />} />
+          <Route path="/favorites" element={user && <components.Favorites user={user} />} />
         </Route>
       </Routes>
     </div>
