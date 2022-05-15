@@ -13,9 +13,8 @@ const SearchBar = () => {
   }
 
   const searchHandler = () => {
-    if (!search) {
-      setSearch(true)
-    } else {
+    setSearch(!search)
+    if (search && searchValue) {
       navigate(`/results/${searchValue}`)
       setSearchValue('')
       setSearch(false)
