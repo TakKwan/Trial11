@@ -3,7 +3,7 @@
 Date: 5/4/2022   
 By [[Tak Lo](https://linkedin.com/in/takkwanlo)]
 
-[Trial11](/trial11.png)
+![Trial11](/trial11.png)
 
 ## Overview
 Trial11 is a National Park app that aims to provide users a cleaner introduction of U.S. national parks. It provides users with two lists called favorites and watchlist, incase users need two list instead of one. These lists are meant for users to keep track of parks and their latest activities. 
