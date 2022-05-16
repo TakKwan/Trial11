@@ -18,7 +18,7 @@ Trial11 is a National Park app that aims to provide users a cleaner introduction
 - Node.js Environment
 - Nodemon Developer Tool
 - National Park Service API
-- Awesome Icon Library
+- Font Awesome Library
 
 
 ## Getting Started
@@ -39,4 +39,4 @@ Trial11 is a National Park app that aims to provide users a cleaner introduction
 
 ## Credits
 - National Park Service API
-- Awesome Icon
+- Font Awesome
