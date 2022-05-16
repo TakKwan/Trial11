@@ -17,6 +17,8 @@ Trial11 is a National Park app that aims to provide users a cleaner introduction
 - Express Framework
 - Node.js Environment
 - Nodemon Developer Tool
+- CORS 
+- Dotenv
 - National Park Service API
 - Font Awesome Library
 
