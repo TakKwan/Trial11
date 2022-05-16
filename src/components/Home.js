@@ -46,6 +46,9 @@ const Home = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
           className="pagebar"
           rowsPerPageOptions={[12, 24, 48, 96]}
+          labelRowsPerPage="Parks Per Page"
+          showFirstButton={true}
+          showLastButton
         />}
     </div>
 
