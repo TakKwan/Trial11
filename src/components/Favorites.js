@@ -1,18 +1,18 @@
 import { getMultiParks } from "../services"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import ParkCard from './ParkCard'
 
 const Favorites = ({ user }) => {
   const [parks, setParks] = useState(null)
 
-  const fetchFavorites = async () => {
+  const fetchFavorites = useCallback(async () => {
     const res = await getMultiParks(user.favorites)
     setParks(res)
-  }
+  }, [user.favorites, setParks])
 
   useEffect(() => {
     fetchFavorites()
-  }, [])
+  }, [fetchFavorites])
 
   return (
     <div className="favorites list">

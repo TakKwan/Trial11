@@ -59,7 +59,7 @@ body {
   transform: scale(90%);
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   overflow: hidden;
 }
 
